@@ -14,14 +14,14 @@ const Computers = () => {
         position={[-20, 50, 10]}
         angle={0.5}
         penumbra={1}
-        intensity={1}
+        intensity={4}
         castShadow
         shadow-mapSize={1024}
       />
       <pointLight intensity={1} />
       <primitive
         object={harryPotter.scene}
-        scale={0.85}
+        scale={2.15}
         position={[0, -3.55, 0]}
         rotation={[0,0,0]}
       />
@@ -32,6 +32,7 @@ const Computers = () => {
 const ComputersCanvas = () => {
   return (
     <Canvas
+      className="z-10"
       frameloop='demand'
       shadows
       dpr={[1, 2]}
@@ -41,13 +42,13 @@ const ComputersCanvas = () => {
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
           enableZoom={false}
-          maxPolarAngle={Math.PI/1 }
+          maxPolarAngle={Math.PI/2 }
           minPolarAngle={Math.PI/2 }
         />
         <Computers />
       </Suspense>
 
-      <Preload all />
+      <Preload true />
     </Canvas>
   );
 };
