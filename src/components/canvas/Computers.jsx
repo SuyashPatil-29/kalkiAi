@@ -21,9 +21,9 @@ const Computers = () => {
       <pointLight intensity={1} />
       <primitive
         object={harryPotter.scene}
-        scale={2.15}
+        scale={2.05}
         position={[0, -3.55, 0]}
-        rotation={[0,0,0]}
+        rotation={[0,-30,0]}
       />
     </mesh>
   );

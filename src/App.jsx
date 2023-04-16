@@ -12,10 +12,8 @@ function App() {
         <div className="relative z-0 bg-primary">
         <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
         <Navbar />
+        <div className="flex items-center justify-center pt-28 pl-16">
         <Carousel2 />
-        {/* <div className="h-[400px]">
-        <ImgSlider />
-        </div>
         </div>
         <About />
         <Experience />
@@ -25,7 +23,7 @@ function App() {
         <div className="relative z-0">
            <Contact />
            <StarsCanvas />
-        </div> */}
+        </div>
         </div>
         </div>
       </BrowserRouter>

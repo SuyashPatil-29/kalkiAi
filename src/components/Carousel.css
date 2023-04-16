@@ -1,0 +1,51 @@
+
+.slider{
+  width: 100%;
+  height: 400px;
+}
+
+.slide, .slide div{
+  width: 100%;
+  height: 350px;
+}
+.slide{
+  /* opacity: .5; */
+  transform: scale(.7);
+  transition: .5s;
+  filter: blur(4px);
+}
+
+.slide-active{
+  filter: blur(0);
+  opacity: 1;
+  transform: scale(1.05);
+}
+.arrow{
+  font-size: 30px;
+  padding: 5px 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px 3px #ccc;
+  display: flex;
+  width: 50px;
+  position: absolute;
+  top: 200px;
+  z-index: 100;
+  cursor: pointer;
+}
+.arrow-right{
+  right: 20px;
+}
+.arrow-left{
+  left: 20px;
+}
+.dot{
+  margin-top: 20px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  box-shadow: 0 0 5px 3px #ccc;
+}
+.dot-active{
+  background: #121227;
+  box-shadow: 0 0 15px 10px #ccc;
+}

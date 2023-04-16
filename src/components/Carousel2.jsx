@@ -1,62 +1,90 @@
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { useState } from 'react';
+import Slider from 'react-slick';
+import "./Carousel.css";
+import "slick-carousel"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css";
 
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-
-import { EffectCoverflow, Pagination, Navigation } from 'swiper';
+// import icons
+import {BsArrowLeft, BsArrowRight,} from 'react-icons/bs';
 import { ComputersCanvas, EarthCanvas } from './canvas';
 import IronManCanvas from './canvas/IronMan';
+const images = [<ComputersCanvas />, <IronManCanvas />, <EarthCanvas />];
 
-function App() {
+function SampleNextArrow({onClick}) {
   return (
-    <div className="container">
-      <h1 className="heading">Flower Gallery</h1>
-      <Swiper
-        effect={'coverflow'}
-        grabCursor={true}
-        centeredSlides={true}
-        loop={true}
-        slidesPerView={'auto'}
-        coverflowEffect={{
-          rotate: 0,
-          stretch: 0,
-          depth: 100,
-          modifier: 2.5,
-        }}
-        pagination={{ el: '.swiper-pagination', clickable: true }}
-        navigation={{
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-          clickable: true,
-        }}
-        modules={[EffectCoverflow, Pagination, Navigation]}
-        className="swiper_container"
-      >
-        <SwiperSlide>
-          <div className="bg-slate-400"><IronManCanvas /></div>
-        </SwiperSlide>
-        <SwiperSlide>
-        <div className="bg-slate-400"><EarthCanvas /></div>
-        </SwiperSlide>
-        <SwiperSlide>
-        <div className="bg-slate-400"><ComputersCanvas /></div>
-        </SwiperSlide>
-
-        <div className="slider-controler">
-          <div className="swiper-button-prev slider-arrow">
-            <ion-icon name="arrow-back-outline"></ion-icon>
-          </div>
-          <div className="swiper-button-next slider-arrow">
-            <ion-icon name="arrow-forward-outline"></ion-icon>
-          </div>
-          <div className="swiper-pagination"></div>
-        </div>
-      </Swiper>
+    <div className='arrow arrow-right' onClick={onClick}>
+      <BsArrowRight/>
     </div>
   );
 }
 
-export default App;
+function SamplePrevArrow({onClick}) {
+  return (
+    <div className='arrow arrow-left' onClick={onClick}>
+      <BsArrowLeft/>
+    </div>
+  );
+}
+function EmptyArrow({onClick}) {
+  return (
+    <div></div>
+  );
+}
+
+function Carousel2() {
+
+  const [slideIndex, setSlideIndex] = useState(0);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    beforeChange: (current, next)=>setSlideIndex(next),
+    centerMode: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    appendDots: (dots) => (
+      <div>
+        <ul style={{ margin: "0px" }}> {dots} </ul>
+      </div>
+    ),
+    customPaging: (current, next) => (
+      <div className={current === slideIndex ? 'dot dot-active' : 'dot'}>
+      </div>
+    ),
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: true,
+          nextArrow: <EmptyArrow />,
+          prevArrow: <EmptyArrow />,
+        }
+      }]
+  };
+
+  return (
+    <div className="container">
+        <div className="slider">
+      <Slider {...settings}>
+          {
+            images.map((img, index)=>(
+              <div className={index === slideIndex ? 'slide slide-active': 'slide'} key={index}>
+                {img}
+              </div>
+            ))
+          }
+      </Slider>
+        </div>
+    </div>
+  );
+}
+
+export default Carousel2;

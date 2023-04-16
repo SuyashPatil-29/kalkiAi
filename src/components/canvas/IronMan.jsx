@@ -21,9 +21,9 @@ const IronMan = () => {
       <pointLight intensity={6} />
       <primitive
         object={ironman.scene}
-        scale={4.45}
+        scale={4.15}
         position={[0, -3.55, 0]}
-        rotation={[0,0,0]}
+        rotation={[0,-30,0]}
       />
     </mesh>
   );
